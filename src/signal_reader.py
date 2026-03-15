@@ -20,7 +20,8 @@ def _read_pod5(fname):
 	retval = dict()
 	with pod5.Reader(fname) as reader:
 		for read_record in reader.reads():
-			key = read_record.read_id
+			key = str(read_record.read_id)
+			signal = read_record.signal
 			retval[key] = signal[(const.signal_outlier_lim[0] <= signal) & (signal <= const.signal_outlier_lim[1])]
 	return retval
 
